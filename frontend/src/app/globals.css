@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f0f7ff;
+  --foreground: #1e293b;
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --primary-light: #7dd3fc;
+  --accent: #06b6d4;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --card-bg: #ffffff;
+  --border: #e0f2fe;
+  --tooth-color: #e0f2fe;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+/* Floating tooth background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%230ea5e9'%3E%3Cpath d='M32 4c-6 0-10 2-13 5s-5 8-5 14c0 4 1 8 2 12 1.5 5 3 10 3.5 14 .5 4 1.5 8 4 11 1.5 1.8 3.5 3 5.5 3s3-1 4-3c1.2-2.5 1.8-5.5 2-8h0c.2 2.5.8 5.5 2 8 1 2 2 3 4 3s4-1.2 5.5-3c2.5-3 3.5-7 4-11 .5-4 2-9 3.5-14 1-4 2-8 2-12 0-6-2-11-5-14S38 4 32 4z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%2306b6d4'%3E%3Cpath d='M32 4c-6 0-10 2-13 5s-5 8-5 14c0 4 1 8 2 12 1.5 5 3 10 3.5 14 .5 4 1.5 8 4 11 1.5 1.8 3.5 3 5.5 3s3-1 4-3c1.2-2.5 1.8-5.5 2-8h0c.2 2.5.8 5.5 2 8 1 2 2 3 4 3s4-1.2 5.5-3c2.5-3 3.5-7 4-11 .5-4 2-9 3.5-14 1-4 2-8 2-12 0-6-2-11-5-14S38 4 32 4z'/%3E%3C/svg%3E");
+  background-size: 48px 48px, 36px 36px;
+  background-position: 0 0, 80px 60px;
+  background-repeat: repeat;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom slider styling - dental theme */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e0f2fe, #bae6fd);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 12px rgba(14, 165, 233, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+}
+
+/* Smooth card hover effects */
+.dental-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.dental-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.12);
+}
+
+/* Pulse animation for the analyze button */
+@keyframes dental-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+}
+
+.dental-btn-pulse {
+  animation: dental-pulse 2s infinite;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+.float-animation-delayed {
+  animation: float 5s ease-in-out 1s infinite;
+}
+
+/* Result card entrance animation */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f7ff;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background: #bae6fd;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7dd3fc;
+}
